@@ -45,14 +45,18 @@ int[] generateRandomArray()
 
 bool isValidChoice(int[] table,int choice) 
 {
-    int row = Array.IndexOf(table, choice) % 4;
-    int col = Array.IndexOf(table, choice) / 4;
+    int col = Array.IndexOf(table, choice) % 4;
+    int row = Array.IndexOf(table, choice) / 4;
+
+    Console.WriteLine("Cordinate");
+    Console.WriteLine(row);
+    Console.WriteLine(col);
 
 
     
     if (row == 0 && col == 0)
     {
-        if ((int)table.GetValue(row * 4 + col) == 0 ||
+        if ((int)table.GetValue(row * 4 + col + 1) == 0 ||
             (int)table.GetValue(((row+1) * 4 + col)) == 0)
         {
             return true;
@@ -65,21 +69,21 @@ bool isValidChoice(int[] table,int choice)
 
     if (row == 0 && col == 3)
     {
-        if ((int)table.GetValue(row * 4 + col-1) != 0 ||
-            (int)table.GetValue(((row + 1) * 4 + col)) != 0)
+        if ((int)table.GetValue(row * 4 + col - 1) == 0 ||
+            (int)table.GetValue((row + 1) * 4 + col) == 0)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
 
     if (row == 3 && col == 0)
     {
-        if ((int)table.GetValue(row * 4 + col + 1) != 0 ||
-            (int)table.GetValue(((row -1) * 4 + col)) != 0)
+        if ((int)table.GetValue(row * 4 + col + 1) == 0 ||
+            (int)table.GetValue(((row - 1) * 4 + col)) == 0)
         {
             return true;
         }
@@ -91,100 +95,87 @@ bool isValidChoice(int[] table,int choice)
 
     if (row == 3 && row == 3)
     {
-        if ((int)table.GetValue(row * 4 + col - 1) != 0 ||
-            (int)table.GetValue(((row - 1) * 4 + col)) != 0 ||
-            (int)table.GetValue(((row - 1) * 4 + col - 1)) != 0)
+        if ((int)table.GetValue(row * 4 + col - 1) == 0 ||
+            (int)table.GetValue(((row - 1) * 4 + col)) == 0)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
 
     if (row == 0)
     {
-        if ((int)table.GetValue(row*4 + col -1) != 0 ||
-            (int)table.GetValue(row*4 + col +1) != 0 ||
-            (int)table.GetValue((row+1) + col) != 0 ||
-            (int)table.GetValue((row+1) + col+1) != 0 ||
-            (int)table.GetValue((row+1) + col-1) != 0)
+        if ((int)table.GetValue(row * 4 + col - 1) == 0 ||
+            (int)table.GetValue(row * 4 + col + 1) == 0 ||
+            (int)table.GetValue((row + 1) * 4 + col) == 0)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }       
     }
 
     if (row == 3)
     {
-        if ((int)table.GetValue(row * 4 + col - 1) != 0 ||
-            (int)table.GetValue(row * 4 + col + 1) != 0 ||
-            (int)table.GetValue((row - 1) + col) != 0 ||
-            (int)table.GetValue((row - 1) + col + 1) != 0 ||
-            (int)table.GetValue((row - 1) + col - 1) != 0)
+        if ((int)table.GetValue(row * 4 + col - 1) == 0 ||
+            (int)table.GetValue(row * 4 + col + 1) == 0 ||
+            (int)table.GetValue((row - 1) * 4 + col) == 0)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
 
     if (col == 0)
     {
-        if ((int)table.GetValue((row - 1) + col) != 0 ||
-            (int)table.GetValue((row + 1) + col) != 0 ||
-            (int)table.GetValue(row + col+1) != 0 ||
-            (int)table.GetValue((row + 1) + (col+1)) != 0 ||
-            (int)table.GetValue((row - 1) + (col+1)) != 0)
+        if ((int)table.GetValue((row - 1) * 4  + col) == 0 ||
+            (int)table.GetValue((row + 1) * 4  + col) == 0 ||
+            (int)table.GetValue(row * 4 + col + 1) == 0)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
 
     if (col == 3)
     {
-        if ((int)table.GetValue((row - 1) + col) != 0 ||
-            (int)table.GetValue((row + 1) + col) != 0 ||
-            (int)table.GetValue(row + col -1)  != 0 ||
-            (int)table.GetValue((row - 1) + (col-1)) != 0 ||
-            (int)table.GetValue((row + 1) + ( col-1)) != 0)
-        {
-            return false;
-        }
-        else
+        if ((int)table.GetValue((row - 1) * 4 + col) == 0 ||
+            (int)table.GetValue((row + 1) * 4  + col) == 0 ||
+            (int)table.GetValue(row * 4  + col - 1)  == 0)
         {
             return true;
         }
+        else
+        {
+            return false;
+        }
     }
 
-    if ((int)table.GetValue(row + col + 1) != 0 ||
-        (int)table.GetValue(row + col - 1) != 0 ||
-        (int)table.GetValue((row - 1) + col) != 0 ||
-        (int)table.GetValue((row + 1) + col) != 0 ||
-        (int)table.GetValue((row - 1) + (col - 1)) != 0 ||
-        (int)table.GetValue((row - 1) + (col + 1)) != 0 ||
-        (int)table.GetValue((row + 1) + (col - 1)) != 0 ||
-        (int)table.GetValue((row + 1) + (col + 1)) != 0)
-    {
-        return false;
-    }
-    else
+    if ((int)table.GetValue(row * 4 + col + 1) == 0 ||
+        (int)table.GetValue(row * 4 + col - 1) == 0 ||
+        (int)table.GetValue((row - 1) * 4 + col) == 0 ||
+        (int)table.GetValue((row + 1) * 4 + col) == 0)
     {
         return true;
     }
+    else
+    {
+        return false;
+    }
 }
 
-int[] debugTable = new[] {7,3,11,15,0,1,5,10,8,2,13,12,4,14,9,6};
+int[] debugTable = new[] {7,3,11,15,8,1,5,10,0,2,13,12,4,14,9,6};
 
 
 //int[] table = generateRandomArray();
